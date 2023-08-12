@@ -1,0 +1,86 @@
+.login-background {
+    background: rgb(34,193,195);
+    background: linear-gradient(135deg, rgba(34,193,195,1) 0%,rgba(253,187,45,1) 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-container {
+        width: 400px;
+        height: 521px;
+        background-color: #fff;
+        border-radius: 18px;
+
+        .login-content {
+            .col-12 {
+                margin-top: 15px;
+            }
+
+            padding: 15px;
+
+            .login-title {
+                font-weight: 600;
+            }
+
+            .login-input {
+                margin: 12px 0;
+
+                .password-wrapper {
+                    position: relative;
+
+                    .fa-eye, .fa-eye-slash {
+                        position: absolute;
+                        right: 20px;
+                        transform: translateY(-50%);
+                        top: 50%;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .login-btn {
+                width: 100%;
+                height: 36px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                border: 0;
+                outline: 0;
+                background: rgb(34,193,195);
+                background: linear-gradient(135deg, rgba(34,193,195,1) 0%,rgba(253,187,45,1) 100%);
+                border-radius: 999px;
+            }
+
+            .forgot-password {
+                font-size: 12px;
+            }
+
+            .social-login {
+                display: flex;
+                justify-content: center;
+                i {             
+                    width: 50px;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 30px;
+                    border-radius: 50%;
+                    margin: 7px;
+                }
+
+                .fa-google-plus-g {
+                    background-color: #dc4e41;
+                    color: white;
+                }
+
+                .fa-facebook-f {
+                    background-color: #3b5998;
+                    color: white;
+                }
+            }
+        }
+    }
+
+}
