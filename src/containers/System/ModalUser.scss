@@ -1,0 +1,13 @@
+.password-field {
+    position: relative;
+
+    span {
+        .fa-eye-slash, .fa-eye {
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
