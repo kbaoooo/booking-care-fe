@@ -4,14 +4,12 @@ import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./ModalUser.scss";
 
-class ModalUser extends Component {
+class ModalEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
       firstName: "",
       lastName: "",
-      email: "",
-      password: "",
       address: "",
       phone: "",
       roleId: "1",
@@ -22,10 +20,23 @@ class ModalUser extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let user = nextProps.data
+    this.setState({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      address: user.address,
+      phone: user.phone,
+      roleId: user.roleId,
+      gender: user.gender ? "1" : "0",
+    })
+  }
 
   toggle() {
-    this.props.toggleUserModal();
+    this.props.toggleModalEdit();
   }
 
   handleFirstNameChange = (e) => {
@@ -37,24 +48,6 @@ class ModalUser extends Component {
   handleLastNameChange = (e) => {
     this.setState({
       lastName: e.target.value,
-    });
-  };
-
-  handleEmailChange = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-  };
-
-  handlePasswordChange = (e) => {
-    this.setState({
-      password: e.target.value,
-    });
-  };
-
-  handleShowPassword = () => {
-    this.setState({
-      isShowPassword: !this.state.isShowPassword,
     });
   };
 
@@ -83,28 +76,35 @@ class ModalUser extends Component {
   };
 
   checkValidUser = () => {
-    let fields = ['firstName', 'lastName', 'email', 'address', 'phone', 'password', 'roleId', 'gender']
-    for(let i = 0; i < fields.length; i++) {
-      if(!this.state[fields[i]]) {
-        alert('Missing field ' + fields[i]);
-        return false
+    let fields = [
+      "firstName",
+      "lastName",
+      "address",
+      "phone",
+      "roleId",
+      "gender",
+    ];
+    for (let i = 0; i < fields.length; i++) {
+      if (!this.state[fields[i]]) {
+        alert("Missing field " + fields[i]);
+        return false;
       }
     }
     return true;
   };
 
-  handleCreateUser = () => {
+  handleUpdateUser = () => {
     let isValid = this.checkValidUser();
-    let blackList = ['isShowPassword']
-    if(isValid) {
+    let blackList = ["isShowPassword"];
+    if (isValid) {
       let data = {
         ...this.state,
+      };
+      for (let i = 0; i < blackList.length; i++) {
+        delete data[blackList[i]];
       }
-      for(let i = 0; i < blackList.length; i++) {
-        delete data[blackList[i]]
-      }
-      this.props.toggleUserModal();
-      this.props.getDataFromModal(data);
+      this.props.toggleModalEdit();
+      this.props.getDataFromModalEdit(this.props.data.id, data);
     }
   };
 
@@ -115,11 +115,11 @@ class ModalUser extends Component {
           {this.props.buttonLabel}
         </Button>
         <Modal
-          isOpen={this.props.showModalUser}
+          isOpen={this.props.showModalEdit}
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Create New User</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit User</ModalHeader>
           <ModalBody>
             <div className="row">
               <div className="form-group col-6">
@@ -135,39 +135,10 @@ class ModalUser extends Component {
                 <label>Last name</label>
                 <input
                   type="text"
+                  value={this.state.lastName}
                   className="form-control"
                   onChange={this.handleLastNameChange}
-                  value={this.state.handleLastNameChange}
                 />
-              </div>
-              <div className="form-group col-12">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  onChange={this.handleEmailChange}
-                  value={this.state.email}
-                />
-              </div>
-              <div className="form-group col-12">
-                <label>Password</label>
-                <div className="password-field">
-                  <input
-                    type={this.state.isShowPassword ? 'text' : 'password'}
-                    className="form-control"
-                    onChange={this.handlePasswordChange}
-                    value={this.state.password}
-                  />
-                  <span onClick={this.handleShowPassword}>
-                    <i
-                      className={
-                        this.state.isShowPassword
-                          ? "far fa-eye-slash"
-                          : "far fa-eye"
-                      }
-                    ></i>
-                  </span>
-                </div>
               </div>
               <div className="form-group col-12">
                 <label>Address</label>
@@ -216,8 +187,8 @@ class ModalUser extends Component {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.handleCreateUser}>
-              Create
+            <Button color="primary" onClick={this.handleUpdateUser}>
+              Update
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
@@ -237,4 +208,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEdit);

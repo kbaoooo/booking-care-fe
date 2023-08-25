@@ -1,4 +1,4 @@
-import messages_vi from '../translations/vi.json';
+import messages_vie from '../translations/vie.json';
 import messages_en from '../translations/en.json';
 
 const flattenMessages = ((nestedMessages, prefix = '') => {
@@ -20,13 +20,13 @@ const flattenMessages = ((nestedMessages, prefix = '') => {
 });
 
 const messages = {
-    'vi': flattenMessages(messages_vi),
+    'vie': flattenMessages(messages_vie),
     'en': flattenMessages(messages_en),
 };
 
 export default class LanguageUtils {
-    static getMessageByKey(key, lang) {
-        return messages[lang][key]
+    static getMessageByKey(key, language) {
+        return messages[language][key]
     }
 
     static getFlattenedMessages() {
