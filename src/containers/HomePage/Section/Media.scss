@@ -1,0 +1,125 @@
+.section-media {
+    padding-bottom: 40px;
+    background: #f5f5f5;
+
+    .media-content {
+        margin: 0 67px;
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+
+            h3 {
+                margin: 0;
+            }
+        }
+
+        .media-body {
+            display: flex;
+            justify-content: space-between;
+            ul {
+                list-style: none;
+                text-align: center;
+                margin-right: 50px;
+                
+                li {
+                    height: 50px;
+                    margin-top: 10px;
+                    
+                    a,i {
+                        display: inline-block;
+                        height: 100%;
+                        border-radius: 5px;
+                    }
+
+                    i{
+                        width: 100%;
+                    }
+                    
+                    .lifeAndHealth {
+                        width: 162px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/suckhoedoisong.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 142px 30px;
+                        }
+                    }
+                    .vtv {
+                        width: 106px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/vtv1.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 86px 30px
+                        }
+                    }
+                    .ictNews {
+                        width: 127px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/ictnews.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 86px 30px
+                        }
+                    }
+                    .vnex {
+                        width: 183px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/vnexpress.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 163px 30px;    
+                        }
+                    }
+                    .vtcNews {
+                        width: 151px;
+                        background-color: #a3171e;
+                        i {
+                            background: url('../../../assets//images/medias/vtcnews.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 131px 30px;
+                        }
+                    }
+                    .techAndMedical {
+                        width: 127px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/cuc-cong-nghe-thong-tin-bo-y-te-2.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 86px 30px
+                        }
+                    }
+                    .infoNet {
+                        width: 129px;
+                        background-color: #fff;
+                        i {
+                            background: url('../../../assets//images/medias/infonet.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 109px 30px
+                        }
+                    }
+                    .vtc {
+                        width: 96px;
+                        background-color: #16325C;
+                        i {
+                            background: url('../../../assets//images/medias/vtcgo.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: 76px 25px;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}

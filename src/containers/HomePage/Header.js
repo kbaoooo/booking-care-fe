@@ -7,8 +7,13 @@ import android from "../../assets/images/download-android.svg";
 import ios from "../../assets/images/download-ios.svg";
 import { languages } from "../../utils";
 import { FormattedMessage } from "react-intl";
+import { changeLanguageApp } from "../../store/actions/appActions";
 
 class Header extends Component {
+  handleChangeLanguage = (e) => {
+    this.props.changeLanguageApp(e.target.value);
+  };
+
   render() {
     return (
       <>
@@ -66,9 +71,9 @@ class Header extends Component {
                 <FormattedMessage id="home_header.support" />
               </div>
               <div className="languagues">
-                <select>
+                <select onChange={this.handleChangeLanguage}>
                   <option value="vie">VIE</option>
-                  <option value="eng">ENG</option>
+                  <option value="en">EN</option>
                 </select>
               </div>
             </div>
@@ -116,7 +121,7 @@ class Header extends Component {
               <div className="banner-item">
                 <a href="##">
                   <div className="banner-item-icon">
-                  <i class="fas fa-phone"></i>
+                    <i className="fas fa-phone"></i>
                   </div>
                   <p className="banner-item-title">
                     <FormattedMessage
@@ -131,7 +136,7 @@ class Header extends Component {
               <div className="banner-item">
                 <a href="##">
                   <div className="banner-item-icon">
-                  <i class="fas fa-paste"></i>
+                    <i className="fas fa-paste"></i>
                   </div>
                   <p className="banner-item-title">
                     <FormattedMessage
@@ -146,7 +151,7 @@ class Header extends Component {
               <div className="banner-item">
                 <a href="##">
                   <div className="banner-item-icon">
-                  <i class="fas fa-syringe"></i>
+                    <i className="fas fa-syringe"></i>
                   </div>
                   <p className="banner-item-title">
                     <FormattedMessage
@@ -161,7 +166,7 @@ class Header extends Component {
               <div className="banner-item">
                 <a href="##">
                   <div className="banner-item-icon">
-                  <i class="fas fa-dumbbell"></i>
+                    <i className="fas fa-dumbbell"></i>
                   </div>
                   <p className="banner-item-title">
                     <FormattedMessage
@@ -178,7 +183,7 @@ class Header extends Component {
               <div className="banner-item">
                 <a href="##">
                   <div className="banner-item-icon">
-                  <i class="fas fa-tooth"></i>
+                    <i className="fa-solid fa-house-medical-circle-check"></i>
                   </div>
                   <p className="banner-item-title">
                     <FormattedMessage
@@ -266,7 +271,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageApp: (language) => {
+      dispatch(changeLanguageApp(language));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

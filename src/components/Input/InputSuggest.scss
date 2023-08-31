@@ -6,7 +6,7 @@
     top: 50px;
     z-index: 4;
     max-height: 140px;
-    overflow: auto;
+    overflow: overlay;
     background: $footer-container;
     box-shadow: 2px 2px 4px 0 $box-shadow-color;
     -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
