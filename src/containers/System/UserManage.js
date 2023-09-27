@@ -123,26 +123,25 @@ class UserManage extends Component {
         className="container"
         style={{ margin: 0, padding: 0, maxWidth: "100%" }}
       >
-        <Header/>
         <div className="content" style={{ margin: 0, width: "100%" }}>
           <button
             className="btn btn-primary mt-3"
             onClick={this.handleShowModal}
           >
-            Add new user
+            <FormattedMessage id="system.user-manage.add-user"/>
           </button>
           <table className="talbe mt-3" style={{ width: "100%" }}>
             <thead>
               <tr>
-                <th scope="col">Id</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Role</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Actions</th>
+                <th scope="col"><FormattedMessage id="system.user-manage.user-id"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.first-name"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.last-name"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.email"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.address"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.mobile"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.role"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.gender"/></th>
+                <th scope="col"><FormattedMessage id="system.user-manage.actions"/></th>
               </tr>
             </thead>
             <tbody>
@@ -172,13 +171,13 @@ class UserManage extends Component {
                         className="btn btn-primary"
                         onClick={() => this.handleEdit(user.id)}
                       >
-                          Edit
+                          <FormattedMessage id="system.user-manage.actions-edit"/>
                       </button>
                       <button
                         className="btn btn-danger"
                         onClick={() => this.handleDelete(user.id)}
                       >
-                        Delete
+                        <FormattedMessage id="system.user-manage.actions-delete"/>
                       </button>
                     </td>
                   </tr>

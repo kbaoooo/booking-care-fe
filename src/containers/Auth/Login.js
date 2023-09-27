@@ -45,7 +45,11 @@ class Login extends Component {
           errMessage: response.message
         })
       } if(response && response.errCode === 0) {
-        this.props.userLoginSuccess(response.data.email)
+        const {data} = response
+        const userInfo = {
+          ...data
+        }
+        this.props.userLoginSuccess(userInfo)
       }
     } catch(err) {
       this.setState({

@@ -8,7 +8,8 @@
         "select_doctor": "Chọn bác sĩ giỏi",
         "package": "Gói khám",
         "check_health": "Khám sức khỏe tổng quát",
-        "support": "Hỗ trợ"
+        "support": "Hỗ trợ",
+        "welcome": "Xin chào"
     },
 
     "banner": {
@@ -55,27 +56,64 @@
     "menu": {
         "system": {
             "header": "Hệ thống",
-            "system-administrator": {
-                "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
+            "member-administrator": {
+                "header": "Quản trị thành viên",
                 "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+            },
+            "clinic-administrator": {
+                "header": "Quản trị phòng khám",
+                "register-package-group-or-account": "Register service package for group/account"
+            },
+            "specialty-administrator": {
+                "header": "Quản trị chuyên khoa",
+                "register-package-group-or-account": "Register service package for group/account"
+            },
+            "handbook-administrator": {
+                "header": "Quản trị cẩm nang",
+                "register-package-group-or-account": "Register service package for group/account"
             },
             "system-parameter": {
                 "header": "Tham số hệ thống"
             }
+        },
+        "member" : {
+            "manage-user": "Quản lí người dùng",
+            "manage-doctor": "Quản lí bác sĩ",
+            "manage-admin": "Quản lí admin",
+            "manage-user-redux": "Quản lí người dùng - redux",
+            "CRUD": "CRUD người dùng",
+            "CRUD-redux": "CRUD người dùng-redux"
+        },
+        "clinic": {
+            "manage-clinic": "Quản lí phòng khám"
+        },
+        "specialty": {
+            "manage-specialty": "Quản lí chuyên khoa"
+        },
+        "handbook": {
+            "manage-handbook": "Quản lí cẩm nang"
         }
     },
     "system": {
+        "title": "Người dùng Redux",
         "user-manage": {
             "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
             "user-id": "Mã người sử dụng",
             "usertype": "Loại người dùng",
-            "username": "Tên người dùng",
-            "fullname": "Tên đầy đủ",
+            "first-name": "Họ",
+            "last-name": "Tên",
             "mobile": "Số điện thoại",
             "email": "Email",
+            "address": "Địa chỉ",
+            "position": "Vị trí",
+            "image": "Tải ảnh",
+            "save": "Lưu",
             "status": "Trạng thái",
+            "role": "Vai trò",
+            "gender": "Giới tính",
+            "actions": "Hành động",
+            "actions-edit": "Sửa",
+            "actions-delete": "Xóa",
             "add-user": "Thêm người dùng",
             "edit-user": "Sửa thông tin người dùng",
             "password": "Mật khẩu",
@@ -119,29 +157,6 @@
             "save-decentralize-success": "Lưu phân quyền chức năng thành công",
             "save-decentralize-fail": "Lưu phân quyền chức năng thất bại",
             "sure-delete-package": "Bạn có chắc chắn muốn xóa gói này?"
-        },
-        "register-package-group-or-acc": {
-            "assign-service-package-to-customer": "Gán gói dịch vụ cho khách hàng",
-            "package-name": "Tên gói",
-            "assign-type": "Loại gán",
-            "cust-acc-group": "Nhóm KH/Tài khoản",
-            "effective-date": "Ngày hiệu lực",
-            "expiration-date": "Ngày hết hiệu lực",
-            "assign": "Gán",
-            "manage-assign-groups": "Quản lý gán nhóm",
-            "group-cust-acc-name": "Tên nhóm/tài khoản KH",
-            "del-assign": "Xóa gán",
-            "fail-to-load-manage-assign-groups-list": "Không thể tải về thông tin quản lý gán nhóm",
-            "invalid-selected": {
-                "currentfoProduct": "Gói đang chọn không hợp lệ",
-                "currentAssignType": "Loại gán không hợp lệ",
-                "currentFoUser": "Nhóm KH/Tài khoản không hợp lệ"
-            },
-            "assign-service-package-to-customer-success": "Gán gói dịch vụ cho khách hàng thành công",
-            "assign-service-package-to-customer-fail": "Gán gói dịch vụ cho khách hàng thất bại",
-            "remove-assign-success": "Bỏ gán gói dịch vụ cho khách hàng thành công",
-            "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
-            "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
     }
 }

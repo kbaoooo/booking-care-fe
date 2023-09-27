@@ -14,9 +14,8 @@ import {
 import { path } from "../utils";
 
 import Home from "../routes/Home";
-// import Login from '../routes/Login';
+//import Login from '../routes/Login';
 import Login from "./Auth/Login";
-import Header from "./Header/Header";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 
@@ -47,7 +46,7 @@ class App extends Component {
         <Router history={history}>
           <div className="main-container">
             <div className="content-container">
-              <CustomScrollbars style={{height: '100vh', width: '100%'}}>
+              <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
@@ -62,19 +61,19 @@ class App extends Component {
                 </Switch>
               </CustomScrollbars>
             </div>
-
             <ToastContainer
-              className="toast-container"
-              toastClassName="toast-item"
-              bodyClassName="toast-item-body"
-              autoClose={false}
-              hideProgressBar={true}
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss={false}
+              draggable
               pauseOnHover={false}
-              pauseOnFocusLoss={true}
-              closeOnClick={false}
-              draggable={false}
-              closeButton={<CustomToastCloseButton />}
+              theme="light"
             />
+
           </div>
         </Router>
       </Fragment>

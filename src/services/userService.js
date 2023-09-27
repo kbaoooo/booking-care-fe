@@ -23,3 +23,11 @@ export const deleteUser = (id) => {
 export const editUser = (id, data) => {
     return axios.put(`/api/edit-user/${id}`, data)
 }
+
+export const getAllCode = (type) => {
+    return axios.get(`/api/allcodes/?type=${type}`)
+}
+
+export const getTopDoctors = (limit = 10) => {
+    return axios.get(`/api/get-top-doctors-home?limit=${limit}`);
+}

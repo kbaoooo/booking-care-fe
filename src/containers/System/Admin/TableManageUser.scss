@@ -1,0 +1,57 @@
+.table {
+    thead {
+        th {
+            background-color: rgb(76,69,185);
+            color: #fff;
+            border-right: 1px solid #fff;
+            
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            background-color: #eeebeb;
+
+            td {
+
+                border-right: 1px solid #fff;
+                
+                &:last-child {
+                    border-right: none;
+                }
+
+                .btn {
+                    border: 0;
+                    outline: 0;
+
+                    & ~ .btn {
+                        margin-left: 20px;
+                    }
+                }
+
+                .edit-user {
+                    i {
+                        color:  rgba(224, 224, 2, 0.966);
+                    }
+                }
+
+                .delete-user {
+                    i {
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.save-edit {
+    width: 277px;
+    height: 34px;
+    background-color: rgb(76,69,185);
+    color: #fff;
+}

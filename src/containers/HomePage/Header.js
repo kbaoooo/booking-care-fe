@@ -10,11 +10,27 @@ import { FormattedMessage } from "react-intl";
 import { changeLanguageApp } from "../../store/actions/appActions";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      language: this.props.language
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevProps.language !== this.props.language) {
+      this.setState({
+        language: this.props.language
+      })
+    }
+  }
+
   handleChangeLanguage = (e) => {
     this.props.changeLanguageApp(e.target.value);
   };
 
   render() {
+    const {language}= this.props;
     return (
       <>
         <div className="home-header-container">
@@ -71,7 +87,10 @@ class Header extends Component {
                 <FormattedMessage id="home_header.support" />
               </div>
               <div className="languagues">
-                <select onChange={this.handleChangeLanguage}>
+                <select
+                  onChange={this.handleChangeLanguage}
+                  value={this.state.language}
+                >
                   <option value="vie">VIE</option>
                   <option value="en">EN</option>
                 </select>
@@ -265,8 +284,8 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    language: state.app.language,
     isLoggedIn: state.user.isLoggedIn,
-    languague: state.app["language"],
   };
 };
 

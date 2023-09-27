@@ -12,9 +12,8 @@ import Footer from './Footer';
 import Media from './Section/Media';
 
 class HomePage extends Component {
-
     render() {
-        return(
+        return( 
             <div >
                 <Header/>
                 <Specialty/>
@@ -37,7 +36,8 @@ class HomePage extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        language: state.app.language,
+        userInfo: state.user.userInfo
     };
 };
 
