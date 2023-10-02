@@ -95,7 +95,9 @@
         }
     },
     "system": {
-        "title": "User redux",
+        "user-redux": {
+            "title": "User redux"
+        },
         "user-manage": {
             "fail-to-load-fouser": "Fail to load system users list",
             "user-id": "User ID",
@@ -130,6 +132,13 @@
                 "password": "Please fill in password"
             },
             "sure-delete-user": "Are you sure to delete this user?"
+        },
+        "doctor-manage": {
+            "title": "Doctor Manage"
         }
+    },
+    "home-page": {
+        "doctors": "Outstanding doctor last week",
+        "search": "Search"
     }
 }

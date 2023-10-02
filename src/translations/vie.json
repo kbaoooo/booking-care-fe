@@ -95,7 +95,6 @@
         }
     },
     "system": {
-        "title": "Người dùng Redux",
         "user-manage": {
             "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
             "user-id": "Mã người sử dụng",
@@ -131,32 +130,15 @@
             },
             "sure-delete-user": "Bạn có chắc chắn muốn xóa người dùng này?"
         },
-        "product-manage": {
-            "fail-to-load-foprtype": "Không thể tải về danh sách gói",
-            "prid": "Mã gói",
-            "prname": "Tên gói",
-            "prtype": "Loại gói",
-            "status": "Trạng thái",
-            "description": "Diễn giải",
-            "effective-date": "Ngày hiệu lực",
-            "expiration-date": "Ngày hết hiệu lực",
-            "add-product": "Thêm gói",
-            "add-product-success": "Thêm gói thành công",
-            "add-product-fail": "Thêm gói thất bại",
-            "edit-product": "Sửa thông tin gói",
-            "package-decentralize": "Phân quyền chức năng",
-            "edit-product-success": "Thay đổi thông tin gói thành công",
-            "edit-product-fail": "Thay đổi thông tin gói thất bại",
-            "delete-product-success": "Xóa gói thành công",
-            "delete-product-fail": "Xóa gói thất bại",
-            "invalid-input": {
-                "prid": "Quý khách vui lòng nhập mã gói",
-                "prname": "Quý khách vui lòng nhập tên gói"
-            },
-            "fail-to-load-decentralize-info": "Không thể tải về thông tin phân quyền chức năng",
-            "save-decentralize-success": "Lưu phân quyền chức năng thành công",
-            "save-decentralize-fail": "Lưu phân quyền chức năng thất bại",
-            "sure-delete-package": "Bạn có chắc chắn muốn xóa gói này?"
+        "user-redux": {
+            "title": "Người dùng Redux"
+        },
+        "doctor-manage": {
+            "title": "Quản lí bác sĩ"
         }
+    },
+    "home-page": {
+        "doctors": "Bác sĩ nổi bật tuần qua",
+        "search": "Tìm kiếm"
     }
 }

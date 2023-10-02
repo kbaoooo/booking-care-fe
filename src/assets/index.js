@@ -19,7 +19,7 @@ export const medicalfacility = {
     hospital
 }
 
-export const doctors = {
+export const doctorsImg = {
     doctorImg
 }
 

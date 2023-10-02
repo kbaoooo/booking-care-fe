@@ -86,3 +86,7 @@
 .slick-next::before {
     color: gray !important;
 }
+
+.slick-disabled {
+    display: none !important;
+}

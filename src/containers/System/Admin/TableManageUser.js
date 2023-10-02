@@ -34,14 +34,15 @@ class TableManageUser extends Component {
   };
 
   handleSaveEditUser = async () => {
-    const {data} = this.props;
+    const { data } = this.props;
     await this.props.editUser(data.id, data);
     await this.props.fetchAllUsersStart();
-  }
+  };
 
   render() {
     return (
       <div>
+        <h1 className="mt-5 text-center title">USERS LIST</h1>
         <table className="table mt-3" style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -127,7 +128,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllUsersStart: () => dispatch(actions.fetchAllUsersStart()),
     deleteUser: (id) => dispatch(actions.deleteUser(id)),
-    editUser: (id, data) => dispatch(actions.editUser(id, data))
+    editUser: (id, data) => dispatch(actions.editUser(id, data)),
   };
 };
 

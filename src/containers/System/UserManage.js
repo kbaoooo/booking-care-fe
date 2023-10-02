@@ -5,7 +5,6 @@ import { getAllUsers, createNewUser, getUserById, deleteUser, editUser } from ".
 import ModalUser from "./ModalUser";
 import ModalDelete from "./ModalDelete";
 import ModalEdit from "./ModalEdit"
-import Header from "../Header/Header";
 
 class UserManage extends Component {
   constructor(props) {

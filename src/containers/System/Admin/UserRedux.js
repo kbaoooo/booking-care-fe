@@ -7,6 +7,22 @@ import * as actions from "../../../store/actions";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import TableManageUser from "./TableManageUser";
+// import react, react-markdown-editor-lite, and a markdown parser you like
+import MarkdownIt from "markdown-it";
+import MdEditor from "react-markdown-editor-lite";
+// import style manually
+import "react-markdown-editor-lite/lib/index.css";
+
+// Register plugins if required
+// MdEditor.use(YOUR_PLUGINS_HERE);
+
+// Initialize a markdown parser
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+  console.log("handleEditorChange", html, text);
+}
 
 class UserRedux extends Component {
   constructor(props) {
@@ -45,7 +61,7 @@ class UserRedux extends Component {
         genders: this.props.genderRedux,
         gender:
           this.props.genderRedux && this.props.genderRedux.length > 0
-            ? this.props.genderRedux[0].key
+            ? this.props.genderRedux[0].keyMap
             : "",
       });
     }
@@ -54,7 +70,7 @@ class UserRedux extends Component {
         positions: this.props.positionRedux,
         position:
           this.props.positionRedux && this.props.positionRedux.length > 0
-            ? this.props.positionRedux[0].key
+            ? this.props.positionRedux[0].keyMap
             : "",
       });
     }
@@ -63,7 +79,7 @@ class UserRedux extends Component {
         roles: this.props.roleRedux,
         role:
           this.props.roleRedux && this.props.roleRedux.length > 0
-            ? this.props.roleRedux[0].key
+            ? this.props.roleRedux[0].keyMap
             : "",
       });
     }
@@ -198,7 +214,7 @@ class UserRedux extends Component {
     return (
       <div className="user-redux-container">
         <div className="title">
-          <FormattedMessage id="system.title" />
+          <FormattedMessage id="system.user-redux.title" />
         </div>
 
         <div className="user-redux-body">
@@ -309,7 +325,7 @@ class UserRedux extends Component {
                   {genderArr &&
                     genderArr.length > 0 &&
                     genderArr.map((gender, index) => (
-                      <option key={index} value={gender.key}>
+                      <option key={index} value={gender.keyMap}>
                         {language === languages.VIE
                           ? gender.valueVI
                           : gender.valueEN}
@@ -333,7 +349,7 @@ class UserRedux extends Component {
                   {roleArr &&
                     roleArr.length > 0 &&
                     roleArr.map((role, index) => (
-                      <option key={index} value={role.key}>
+                      <option key={index} value={role.keyMap}>
                         {language === languages.VIE
                           ? role.valueVI
                           : role.valueEN}
@@ -357,7 +373,7 @@ class UserRedux extends Component {
                   {positionArr &&
                     positionArr.length > 0 &&
                     positionArr.map((position, index) => (
-                      <option key={index} value={position.key}>
+                      <option key={index} value={position.keyMap}>
                         {language === languages.VIE
                           ? position.valueVI
                           : position.valueEN}
@@ -411,6 +427,11 @@ class UserRedux extends Component {
             data={data}
           />
         </div>
+        <MdEditor
+          style={{ height: "500px" }}
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={handleEditorChange}
+        />
         {this.state.isOpen && (
           <Lightbox
             mainSrc={this.state.previewImg}

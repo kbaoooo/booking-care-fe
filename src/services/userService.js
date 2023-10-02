@@ -31,3 +31,11 @@ export const getAllCode = (type) => {
 export const getTopDoctors = (limit = 10) => {
     return axios.get(`/api/get-top-doctors-home?limit=${limit}`);
 }
+
+export const getAllDoctors = () => {
+    return axios.get(`/api/get-all-doctors`);
+}
+
+export const saveDoctorInfo = (data) => {
+    return axios.post(`/api/save-doctor-info`, data);
+}

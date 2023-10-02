@@ -7,10 +7,43 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Doctors.scss";
-import { doctors } from "../../../assets";
+import { doctorsImg } from "../../../assets";
+import * as actions from "../../../store/actions";
+import { languages } from "../../../utils";
 
 class Doctors extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctors: [],
+    };
+  }
+
+  componentDidMount() {
+    this.props.fetchTopDoctors();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        arrDoctors: this.props.topDoctorsRedux,
+      });
+    }
+  }
+
   render() {
+    let doctors = this.state.arrDoctors
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors)
+      .concat(this.state.arrDoctors);
+    let { language } = this.props;
+
     let settings = {
       dots: false,
       infinite: true,
@@ -18,81 +51,52 @@ class Doctors extends Component {
       slidesToShow: 4,
       slidesToScroll: 4,
     };
+
     return (
       <div className="section-doctors">
         <div className="doctors-content">
           <div className="doctors-header">
-            <h3>Bác sĩ nổi bật tuần qua</h3>
-            <button>Tìm kiếm</button>
+            <h3><FormattedMessage id={"home-page.doctors"} /></h3>
+            <button><FormattedMessage id={"home-page.search"}/></button>
           </div>
           <div className="doctors-body">
             <Slider {...settings}>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
-              <div className="slick-img">
-                <div className="slick-content">
-                  <div className="img-content">
-                    <img src={doctors.doctorImg} alt="" />
-                  </div>
-                  <p className="doctors-title">
-                    Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội
-                  </p>
-                  <span className="doctors-sub-title">Nam học</span>
-                </div>
-              </div>
+              {doctors &&
+                doctors.length > 0 &&
+                doctors.map((doctor, index) => {
+                  let imageBase64 = "";
+                  if (doctor.image) {
+                    imageBase64 = new Buffer(doctor.image, "base64").toString(
+                      "binary"
+                    );
+                  }
+                  let valueEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`;
+                  let valueVi = `${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`;
+                  return (
+                    <div className="slick-img" key={index}>
+                      <div className="slick-content">
+                        <div className="img-content">
+                          {imageBase64 && (
+                            <div
+                              className="image"
+                              style={{
+                                backgroundImage: `url(${imageBase64})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center",
+                                backgroundSize: "cover",
+                              }}
+                              onClick={this.openPreviewImg}
+                            ></div>
+                          )}
+                        </div>
+                        <p className="doctors-title">
+                          {language === languages.VIE ? valueVi : valueEn}
+                        </p>
+                        <span className="doctors-sub-title">Nam học</span>
+                      </div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>
@@ -105,11 +109,14 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     languague: state.app["language"],
+    topDoctorsRedux: state.admin.topDoctors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchTopDoctors: () => dispatch(actions.fetchTopDoctors()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Doctors);
