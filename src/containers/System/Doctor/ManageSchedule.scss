@@ -1,0 +1,21 @@
+.manage-schedule-title {
+    text-align: center;
+}
+
+.picked-date {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    .button-time {
+        background-color: #6955c6;
+        border: none;
+        outline: none;
+        color: #fff;
+        padding: 8px;
+        border-radius: 7px;
+
+        &:hover {
+            background-color: rgb(67, 39, 192);
+        }
+    }
+}

@@ -7,9 +7,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Doctors.scss";
-import { doctorsImg } from "../../../assets";
 import * as actions from "../../../store/actions";
 import { languages } from "../../../utils";
+import { withRouter } from "react-router";
 
 class Doctors extends Component {
   constructor(props) {
@@ -31,6 +31,11 @@ class Doctors extends Component {
     }
   }
 
+  handleViewDetailDoctor = (doctor) => {
+    console.log(doctor);
+    this.props.history.push(`/detail-doctor/${doctor.id}`)
+  }
+
   render() {
     let doctors = this.state.arrDoctors
       .concat(this.state.arrDoctors)
@@ -42,6 +47,7 @@ class Doctors extends Component {
       .concat(this.state.arrDoctors)
       .concat(this.state.arrDoctors)
       .concat(this.state.arrDoctors);
+
     let { language } = this.props;
 
     let settings = {
@@ -73,7 +79,7 @@ class Doctors extends Component {
                   let valueEn = `${doctor.positionData.valueEn}, ${doctor.firstName} ${doctor.lastName}`;
                   let valueVi = `${doctor.positionData.valueVi}, ${doctor.firstName} ${doctor.lastName}`;
                   return (
-                    <div className="slick-img" key={index}>
+                    <div className="slick-img" key={index} onClick={() => this.handleViewDetailDoctor(doctor)}>
                       <div className="slick-content">
                         <div className="img-content">
                           {imageBase64 && (
@@ -108,7 +114,7 @@ class Doctors extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    languague: state.app["language"],
+    language: state.app.language,
     topDoctorsRedux: state.admin.topDoctors,
   };
 };
@@ -119,4 +125,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Doctors);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Doctors));

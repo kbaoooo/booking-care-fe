@@ -1,0 +1,32 @@
+.doctor-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.detail-doctor-content {
+    display: flex;
+    justify-content: center;
+
+    .detail-doctor-info {
+        width: 1160px;
+
+        .detail-doctor-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            .detail-doctor-avatar {
+                margin-right: 30px;
+            }
+
+            .detail-doctor-name {
+                width: 570px;
+            }
+        }
+    }
+
+    .detail-doctor-detail-info {
+        border-top: 2px solid #000;
+        padding: 20px 0;
+    }
+}

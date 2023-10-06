@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./DoctorManage.scss";
-import { languages, CommonUtils } from "../../utils";
 import * as actions from "../../store/actions";
 import "react-image-lightbox/style.css";
+import { getDetailDoctorInfo } from "../../services/userService";
 
 import Select from "react-select";
 
@@ -20,9 +20,10 @@ class DoctorManage extends Component {
     this.state = {
       contentMarkdown: "",
       contentHTML: "",
-      selectedDoctor: {},
       description: "",
+      selectedDoctor: {},
       listDoctors: [],
+      hasOldData: false,
     };
   }
 
@@ -37,7 +38,6 @@ class DoctorManage extends Component {
         listDoctors: dataSelect,
       });
     }
-
   }
 
   buildDataSelected = (inputData) => {
@@ -48,7 +48,7 @@ class DoctorManage extends Component {
         let obj = {};
         obj.label = `${data.firstName} ${data.lastName}`;
         obj.value = data.id;
-        res.push(obj)
+        res.push(obj);
       });
     }
 
@@ -62,7 +62,24 @@ class DoctorManage extends Component {
     });
   };
 
-  handleChangeSelectDoctor = (selectedDoctor) => {
+  handleChangeSelectDoctor = async (selectedDoctor) => {
+    let res = await getDetailDoctorInfo(selectedDoctor.value);
+    console.log(res);
+    if (res && res.errCode === 0 && res.data && res.data.Markdown) {
+      let markdown = res.data.Markdown;
+      this.setState({
+        contentHTML: markdown.contentHTML,
+        contentMarkdown: markdown.contentMarkdown,
+        description: markdown.description,
+        hasOldData: true
+      });
+    } else {
+      this.setState({
+        contentHTML:'',
+        contentMarkdown: '',
+        description: '',
+      });
+    }
     this.setState({
       selectedDoctor,
     });
@@ -74,7 +91,8 @@ class DoctorManage extends Component {
       contentHTML: this.state.contentHTML,
       selectedDoctor: this.state.selectedDoctor,
       description: this.state.description,
-    })
+      hasOldData: this.state.hasOldData
+    });
   };
 
   handleChangeDescription = (e) => {
@@ -93,7 +111,7 @@ class DoctorManage extends Component {
           <div>
             <label>Thông tin giới thiệu</label>
             <textarea
-              className="form-control"
+              className="form-control description"
               rows=""
               cols=""
               onChange={(e) => this.handleChangeDescription(e)}
@@ -115,6 +133,7 @@ class DoctorManage extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
+            value={this.state.contentMarkdown}
           />
         </div>
         <button
@@ -138,7 +157,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
-    saveDoctorInfo: (data) => dispatch(actions.saveDoctorInfo(data))
+    saveDoctorInfo: (data) => dispatch(actions.saveDoctorInfo(data)),
   };
 };
 

@@ -30,7 +30,6 @@ class Header extends Component {
   };
 
   render() {
-    const {language}= this.props;
     return (
       <>
         <div className="home-header-container">

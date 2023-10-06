@@ -7,7 +7,7 @@ import {
   editUser as editUserService,
   getTopDoctors,
   getAllDoctors,
-  saveDoctorInfo as saveDoctorInfoService
+  saveDoctorInfo as saveDoctorInfoService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -195,6 +195,29 @@ export const editUser = (id, data) => {
     } catch (e) {
       toast.error("Edit user failed!");
       dispatch(editUserFailed());
+    }
+  };
+};
+
+export const fetchAllCodeScheduleTime = (type) => {
+  return async (dispatch, getState) => {
+    try {
+      let response = await getAllCode(type);
+      if (response) {
+        dispatch({
+          type: actionsTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          payload: response,
+        });
+      } else {
+        dispatch({
+          type: actionsTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: actionsTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+      });
     }
   };
 };

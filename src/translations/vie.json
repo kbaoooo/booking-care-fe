@@ -72,6 +72,10 @@
                 "header": "Quản trị cẩm nang",
                 "register-package-group-or-account": "Register service package for group/account"
             },
+            "doctor-administrator": {
+                "header": "Quản trị bác sĩ",
+                "register-package-group-or-account": "Register service package for group/account"
+            },
             "system-parameter": {
                 "header": "Tham số hệ thống"
             }
@@ -92,6 +96,15 @@
         },
         "handbook": {
             "manage-handbook": "Quản lí cẩm nang"
+        },
+        "doctor": {
+            "title": "Quản lí bác sĩ",
+            "manage-schedule-menu": "Quản lí kế hoạch khám bệnh",
+            "manage-schedule": {
+                "title": "Quản lí kế hoạch khám bệnh của bác sĩ",
+                "choose-doctor": "Chọn bác sĩ",
+                "choose-time": "Chọn thời gian khám bệnh"
+            }
         }
     },
     "system": {

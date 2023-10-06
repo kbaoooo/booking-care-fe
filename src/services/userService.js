@@ -39,3 +39,7 @@ export const getAllDoctors = () => {
 export const saveDoctorInfo = (data) => {
     return axios.post(`/api/save-doctor-info`, data);
 }
+
+export const getDetailDoctorInfo = (id) => {
+    return axios.get(`/api/get-detail-doctor/${id}`);
+}
