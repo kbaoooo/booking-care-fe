@@ -14,8 +14,14 @@
         padding: 8px;
         border-radius: 7px;
 
-        &:hover {
-            background-color: rgb(67, 39, 192);
+        &.active {
+            background-color: rgb(31, 7, 138) !important;
         }
     }
+}
+
+.btn-primary {
+    margin-top: 30px;
+    width: 250px  !important;
+    height: 30px  !important;
 }

@@ -6,6 +6,8 @@ import * as actions from "../../../store/actions";
 import Select from "react-select";
 import DatePicker from "../../../components/Input/DatePicker";
 import { languages } from "../../../utils";
+import moment from "moment";
+import { toast } from "react-toastify";
 
 class ManageSchedule extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class ManageSchedule extends Component {
     this.state = {
       selectedDoctor: {},
       listDoctors: [],
-      currentDate: new Date(),
+      currentDate: "",
       allScheduleTime: [],
     };
   }
@@ -31,8 +33,16 @@ class ManageSchedule extends Component {
       });
     }
     if (prevProps.allScheduleTimeRedux !== this.props.allScheduleTimeRedux) {
+      let data = this.props.allScheduleTimeRedux;
+      if (data && data.length > 0) {
+        data.map((item) => {
+          item.isSelected = false;
+          return item;
+        });
+      }
+
       this.setState({
-        allScheduleTime: this.props.allScheduleTimeRedux,
+        allScheduleTime: data,
       });
     }
   }
@@ -62,10 +72,34 @@ class ManageSchedule extends Component {
     });
   };
 
+  handleChooseTime = (time) => {
+    const { allScheduleTime } = this.state;
+    if (allScheduleTime && allScheduleTime.length > 0) {
+      let times = allScheduleTime.map((item) => {
+        if (item.id === time.id) {
+          item.isSelected = !item.isSelected;
+        }
+        return item;
+      });
+      this.setState({
+        allScheduleTime: times,
+      });
+    }
+  };
+
+  handleSaveSchedule = () => {
+    let { allScheduleTime, selectedDoctor, currentDate } = this.state;
+    if (!currentDate || currentDate === "Invalid Date") {
+      toast.error("Invalid Date");
+      return;
+    }
+    console.log(currentDate);
+  };
+
   render() {
     let { allScheduleTime } = this.state;
     let { language } = this.props;
-    
+
     return (
       <div className="manage-schedule-container">
         <h2 className="manage-schedule-title">
@@ -100,13 +134,25 @@ class ManageSchedule extends Component {
                 allScheduleTime.length > 0 &&
                 allScheduleTime.map((time, index) => {
                   return (
-                    <button className="button-time" key={index}>
+                    <button
+                      className={
+                        time.isSelected ? "button-time active" : "button-time"
+                      }
+                      key={index}
+                      onClick={() => this.handleChooseTime(time)}
+                    >
                       {language === languages.VIE ? time.valueVI : time.valueEN}
                     </button>
                   );
                 })}
             </div>
-            <button type="button" className="btn btn-primary"></button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={this.handleSaveSchedule}
+            >
+              <FormattedMessage id="common.save" />
+            </button>
           </div>
         </div>
       </div>
