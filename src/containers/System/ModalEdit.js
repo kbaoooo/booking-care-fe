@@ -23,7 +23,7 @@ class ModalEdit extends Component {
   componentDidMount() {
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let user = nextProps.data
     this.setState({
       firstName: user.firstName,

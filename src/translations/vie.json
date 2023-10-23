@@ -99,7 +99,7 @@
         },
         "doctor": {
             "title": "Quản lí bác sĩ",
-            "manage-schedule-menu": "Quản lí kế hoạch khám bệnh",
+            "manage-schedule-menu": "Quản lí khám bệnh",
             "manage-schedule": {
                 "title": "Quản lí kế hoạch khám bệnh của bác sĩ",
                 "choose-doctor": "Chọn bác sĩ",

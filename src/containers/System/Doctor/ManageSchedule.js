@@ -8,6 +8,9 @@ import DatePicker from "../../../components/Input/DatePicker";
 import { languages } from "../../../utils";
 import moment from "moment";
 import { toast } from "react-toastify";
+import _ from "lodash";
+import { dateFormat } from "../../../utils";
+import { saveBulkScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {
   constructor(props) {
@@ -15,7 +18,7 @@ class ManageSchedule extends Component {
     this.state = {
       selectedDoctor: {},
       listDoctors: [],
-      currentDate: "",
+      currentDate: [new Date(Date.now()), new Date(Date.now())],
       allScheduleTime: [],
     };
   }
@@ -67,9 +70,11 @@ class ManageSchedule extends Component {
   };
 
   handleChangeDate = (date) => {
-    this.setState({
-      currentDate: date[0],
-    });
+    if (date && date.length > 0) {
+      this.setState({
+        currentDate: date[0],
+      });
+    }
   };
 
   handleChooseTime = (time) => {
@@ -87,13 +92,38 @@ class ManageSchedule extends Component {
     }
   };
 
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let { allScheduleTime, selectedDoctor, currentDate } = this.state;
+    let result = [];
+
     if (!currentDate || currentDate === "Invalid Date") {
       toast.error("Invalid Date");
       return;
     }
-    console.log(currentDate);
+
+    if(selectedDoctor && _.isEmpty(selectedDoctor)) {
+      toast.error("Ivalid select doctor!")
+    }
+
+    let formattedDate = new Date(currentDate).getTime()
+    if(allScheduleTime.length > 0) {
+      let selectedTime = allScheduleTime.filter((item) => item.isSelected === true)
+      if(selectedTime.length > 0) {
+        selectedTime.map((item) => {
+          let obj = {};
+          obj.doctorId = selectedDoctor.value
+          obj.date = formattedDate
+          obj.timeType = item.keyMap
+          result.push(obj)
+        })
+      } else {
+        toast.error("Ivalid select time!")
+        return
+      }
+    }
+    let response = await saveBulkScheduleDoctor(result);
+    console.log(response);
+    console.log(result);
   };
 
   render() {
@@ -119,14 +149,14 @@ class ManageSchedule extends Component {
               />
             </div>
             <div className="col-6 form-group">
-              <label htmlFor="">
+              <label className="choose-time">
                 <FormattedMessage id="menu.doctor.manage-schedule.choose-time" />
               </label>
               <DatePicker
                 onChange={this.handleChangeDate}
                 className="form-control"
-                value={this.state.currentDate}
-                minDate={new Date()}
+                value={this.state.currentDate[0]}
+                minDate={new Date(Date.now())}
               />
             </div>
             <div className="picked-date col-12">
