@@ -1,49 +1,55 @@
-import axios from "../axios"
+import axios from "../axios";
 
 export const handleLoginApi = (username, password) => {
-    return axios.post('/api/login', {email: username, password})
-}
+  return axios.post("/api/login", { email: username, password });
+};
 
 export const getAllUsers = () => {
-    return axios.get('/api/get-all-users')
-}
+  return axios.get("/api/get-all-users");
+};
 
 export const createNewUser = (data) => {
-    return axios.post('/api/create-new-user', data)
-}
+  return axios.post("/api/create-new-user", data);
+};
 
 export const getUserById = (id) => {
-    return axios.get(`/api/detail-user/${id}`)
-}
+  return axios.get(`/api/detail-user/${id}`);
+};
 
 export const deleteUser = (id) => {
-    return axios.delete(`/api/delete-user/${id}`)
-}
+  return axios.delete(`/api/delete-user/${id}`);
+};
 
 export const editUser = (id, data) => {
-    return axios.put(`/api/edit-user/${id}`, data)
-}
+  return axios.put(`/api/edit-user/${id}`, data);
+};
 
 export const getAllCode = (type) => {
-    return axios.get(`/api/allcodes/?type=${type}`)
-}
+  return axios.get(`/api/allcodes/?type=${type}`);
+};
 
 export const getTopDoctors = (limit = 10) => {
-    return axios.get(`/api/get-top-doctors-home?limit=${limit}`);
-}
+  return axios.get(`/api/get-top-doctors-home?limit=${limit}`);
+};
 
 export const getAllDoctors = () => {
-    return axios.get(`/api/get-all-doctors`);
-}
+  return axios.get(`/api/get-all-doctors`);
+};
 
 export const saveDoctorInfo = (data) => {
-    return axios.post(`/api/save-doctor-info`, data);
-}
+  return axios.post(`/api/save-doctor-info`, data);
+};
 
 export const getDetailDoctorInfo = (id) => {
-    return axios.get(`/api/get-detail-doctor/${id}`);
-}
+  return axios.get(`/api/get-detail-doctor/${id}`);
+};
 
 export const saveBulkScheduleDoctor = (data) => {
-    return axios.post(`/api/bulk-create-schedule`, data)
-}
+  return axios.post(`/api/bulk-create-schedule`, data);
+};
+
+export const getScheduleByDateDoctor = (doctorId, date) => {
+  return axios.get(
+    `/api/get-doctor-schedule-by-date?doctorId=${doctorId}&date=${date}`
+  );
+};

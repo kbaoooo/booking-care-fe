@@ -29,4 +29,17 @@
         border-top: 2px solid #000;
         padding: 20px 0;
     }
+
+    .schedule-doctor {
+        display: flex;
+        height: 200px;
+
+        .content-left {
+            width: 50%;
+        }
+
+        .content-right {
+            width: 50%;
+        }
+    }
 }

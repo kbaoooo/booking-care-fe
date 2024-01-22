@@ -1,0 +1,46 @@
+.choose-date {
+    outline: 0;
+    cursor: pointer;
+    color: #45c3d2;
+    font-weight: 600;
+    border: 0;
+    border-bottom: 1px solid #333;  
+    padding: 9px 7px;
+
+    .choose-date-item {
+        font-weight: 600;
+        height: 30px;
+    }
+}
+
+
+.calendar-title {
+    padding: 10px 0;
+
+    i {
+        font-size: 18px;
+    }
+}
+.calendar-list {
+    gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    
+    .time-btn {
+        width: 150px;
+        height: 50px;
+        font-size: 13px;
+        padding: 7px 10px;
+        background-color: rgb(229, 255, 0);
+        color: #000;
+        border: 0;
+        outline: 0;
+        border-radius: 4px;
+        font-weight: 500;
+
+        &:hover {
+            background-color: #45c3d2;
+            color: #fff;
+        }
+    }
+}

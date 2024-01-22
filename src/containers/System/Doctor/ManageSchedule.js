@@ -18,10 +18,11 @@ class ManageSchedule extends Component {
     this.state = {
       selectedDoctor: {},
       listDoctors: [],
-      currentDate: [new Date(Date.now()), new Date(Date.now())],
+      currentDate: new Date(Date.now()),
       allScheduleTime: [],
     };
   }
+
 
   componentDidMount() {
     this.props.fetchAllDoctors();
@@ -70,6 +71,7 @@ class ManageSchedule extends Component {
   };
 
   handleChangeDate = (date) => {
+    console.log(date);
     if (date && date.length > 0) {
       this.setState({
         currentDate: date[0],
@@ -105,14 +107,15 @@ class ManageSchedule extends Component {
       toast.error("Ivalid select doctor!")
     }
 
-    let formattedDate = new Date(currentDate).getTime()
+    let formattedDate = new Date(new Date().setDate(new Date().getDate() + 1) + 1000).setHours(0,0,0,0);
+
     if(allScheduleTime.length > 0) {
       let selectedTime = allScheduleTime.filter((item) => item.isSelected === true)
       if(selectedTime.length > 0) {
         selectedTime.map((item) => {
           let obj = {};
           obj.doctorId = selectedDoctor.value
-          obj.date = formattedDate
+          obj.date =  formattedDate.toString()
           obj.timeType = item.keyMap
           result.push(obj)
         })
@@ -122,8 +125,11 @@ class ManageSchedule extends Component {
       }
     }
     let response = await saveBulkScheduleDoctor(result);
-    console.log(response);
-    console.log(result);
+    if (response && response.errCode === 0) {
+      toast.success("Savev schedules success!")
+    } else {
+      toast.error("Can not save schudules!");
+    }
   };
 
   render() {
@@ -155,8 +161,8 @@ class ManageSchedule extends Component {
               <DatePicker
                 onChange={this.handleChangeDate}
                 className="form-control"
-                value={this.state.currentDate[0]}
-                minDate={new Date(Date.now())}
+                value={this.state.currentDate}
+                minDate={new Date().setHours(0,0,0,0)}
               />
             </div>
             <div className="picked-date col-12">

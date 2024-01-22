@@ -4,11 +4,13 @@ import Header from "../components/Header/Header";
 import { getDetailDoctorInfo } from "../../../services/userService";
 import "./DetailDoctor.scss";
 import { languages } from "../../../utils";
+import DoctorSchedule from "./DoctorSchedule";
 
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      doctorId: null,
       detailDoctor: {},
     };
   }
@@ -23,6 +25,7 @@ class DetailDoctor extends Component {
       let res = await getDetailDoctorInfo(id);
       if (res && res.errCode === 0) {
         this.setState({
+          doctorId: id,
           detailDoctor: res.data,
         });
       }
@@ -30,7 +33,7 @@ class DetailDoctor extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    
+
   }
 
   render() {
@@ -44,7 +47,7 @@ class DetailDoctor extends Component {
     }
     return (
       <div className="detail-doctor">
-        <Header data={this.state.detailDoctor}/>
+        <Header data={this.state.detailDoctor} />
         <div className="detail-doctor-content">
           <div className="detail-doctor-info">
             <div className="detail-doctor-header">
@@ -57,7 +60,7 @@ class DetailDoctor extends Component {
               </div>
               <div className="detail-doctor-name">
                 <h3>
-                  {language === languages.VIE ? posiVi : posiEn} II {" "}
+                  {language === languages.VIE ? posiVi : posiEn} II{" "}
                   {detailDoctor.firstName} {detailDoctor.lastName}
                 </h3>
                 <p>
@@ -67,6 +70,12 @@ class DetailDoctor extends Component {
                     )}
                 </p>
               </div>
+            </div>
+            <div className="schedule-doctor">
+              <div className="content-left">
+                <DoctorSchedule doctorId={this.state.doctorId} />
+              </div>
+              <div className="content-right"></div>
             </div>
             <div className="detail-doctor-detail-info">
               {detailDoctor &&

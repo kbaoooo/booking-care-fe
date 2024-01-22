@@ -103,7 +103,8 @@
             "manage-schedule": {
                 "title": "Quản lí kế hoạch khám bệnh của bác sĩ",
                 "choose-doctor": "Chọn bác sĩ",
-                "choose-time": "Chọn thời gian khám bệnh"
+                "choose-time": "Chọn thời gian khám bệnh",
+                "check-health-schedule": "Lịch khám"
             }
         }
     },
@@ -147,7 +148,9 @@
             "title": "Người dùng Redux"
         },
         "doctor-manage": {
-            "title": "Quản lí bác sĩ"
+            "title": "Quản lí bác sĩ",
+            "intro-info": "Thông tin giới thiệu",
+            "choose-doctor": "Chọn bác sĩ"
         }
     },
     "home-page": {
